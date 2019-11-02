@@ -3,17 +3,25 @@ import Column from "./Column"
 import {connect} from "react-redux"
 import ActionButton from "./ActionButton"
 import {DragDropContext, Droppable} from "react-beautiful-dnd"
-import {sort} from "../actions"
+import {sort,getAllColumns} from "../actions/columnsActions"
 
 class App extends Component {
-
+    state = {
+        columns:[{
+            "cardIds": [
+            ],
+            "_id":"",
+            "title": "",
+            "columnId": ""
+        }]
+    };
     onDragEnd = (result) => {
         const {destination, source, draggableId, type} = result;
 
         if (!destination) {
             return;
         }
-        this.props.dispatch(
+
             sort(
                 source.droppableId,
                 destination.droppableId,
@@ -22,11 +30,13 @@ class App extends Component {
                 draggableId,
                 type
             )
-        );
+
     };
 
     render() {
-        const {lists} = this.props;
+
+        const {columns} =  this.props.lists;
+
         return (
             <div><h3>KANBAN ASSISTANT</h3>
             <DragDropContext onDragEnd={this.onDragEnd}>
@@ -34,8 +44,8 @@ class App extends Component {
                     <Droppable droppableId="all-lists" direction="horizontal" type="list">
                         {provided => (
                             <div style={styles.listContainer} {...provided.droppableProps} ref={provided.innerRef}>
-                                {lists.map((list, index) => (
-                                    <Column listId={list.id} key={list.id} title={list.title} cards={list.cards}
+                                {columns.map((list, index) => (
+                                    <Column listId={list.columnId} key={list.columnId} title={list.title} cards={list.cardIds}
                                             index={index}
                                     />
                                 ))}
@@ -58,8 +68,23 @@ const styles = {
     }
 };
 const mapStateToProps = state => ({
-    lists: state.lists
+    lists: state.lists,
+
 
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+    return {
+        getColumns:()=> {
+            dispatch(getAllColumns);
+        },
+        sort:()=>{
+            dispatch(sort)
+    }
+    };
+};
+
+// export default connect(null,mapDispatchToProps)(App);
+// export default connect(mapStateToProps,{getAllColumns})(App);
+// export default connect(null,{getAllColumns})(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

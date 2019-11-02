@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Card from '@material-ui/core/Card';
 import Button from "@material-ui/core/Button";
 import {connect} from "react-redux";
-import {addCard, addColumn} from "../actions"
+import {addCard, addColumn} from "../actions/types"
 
 class ActionButton extends Component {
     state = {

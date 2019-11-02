@@ -1,52 +1,73 @@
-import {CONSTANTS} from "../actions";
+import {CONSTANTS} from "../actions/types";
+import axios from "../axios";
+//
+// const initialState = [
+//     {
+//         title: "TO DO",
+//         id: "list0",
+//         cards: [
+//             {
+//                 id: 0,
+//                 text: "do unit testing"
+//             },
+//             {
+//                 id: 1,
+//                 text: "peer testing"
+//             }
+//         ]
+//     },
+//     {
+//         title: "DOING",
+//         id: "list1",
+//         cards: [
+//             {
+//                 id: 2,
+//                 text: "do unit testing"
+//             },
+//             {
+//                 id: 3,
+//                 text: "peer testing"
+//             }
+//         ]
+//     },
+//     {
+//         title: "DONE",
+//         id: "list3",
+//         cards: [
+//             {
+//                 id: 5,
+//                 text: "do unit testing"
+//             },
+//             {
+//                 id: 6,
+//                 text: "peer testing"
+//             }
+//         ]
+//     }
+// ];
 
-const initialState = [
-    {
-        title: "TO DO",
-        id: "list0",
-        cards: [
-            {
-                id: 0,
-                text: "do unit testing"
-            },
-            {
-                id: 1,
-                text: "peer testing"
-            }
-        ]
-    },
-    {
-        title: "DOING",
-        id: "list1",
-        cards: [
-            {
-                id: 2,
-                text: "do unit testing"
-            },
-            {
-                id: 3,
-                text: "peer testing"
-            }
-        ]
-    },
-    {
-        title: "DONE",
-        id: "list3",
-        cards: [
-            {
-                id: 5,
-                text: "do unit testing"
-            },
-            {
-                id: 6,
-                text: "peer testing"
-            }
-        ]
-    }
-];
+const initialState = {
+    columns:[{
+        "cardIds": [
+        ],
+        "_id":"",
+        "title": "",
+        "columnId": ""
+    }]
+};
+// axios.get(`http://localhost:5000/api/columns/all/`)
+//     .then(res=>{
+//         this.setState({ columns: res.data.columns})
+//     })
+
 let listID = 5;
 let cardID = 7;
-const columnReducer = (state = initialState, action) => {
+const columnReducer =  (state = initialState, action) => {
+    // await axios.get(`http://localhost:5000/api/columns/all/`)
+    //     .then(res=>{
+    //         state =res.data.columns
+    //     })
+    // console.log("state"+state)
     switch (action.type) {
         case CONSTANTS.ADD_LIST:
             const newList = {
@@ -108,6 +129,25 @@ const columnReducer = (state = initialState, action) => {
                 listEnd.cards.splice(droppableIndexEnd, 0, ...card)
             }
             return newState;
+        case CONSTANTS.SET_COLUMNS: {
+            const { columns } = action.payload;
+            // const newColumns = columns.reduce((accum, currentValue, currentIndex) => {
+            //     accum[currentValue._id] = {
+            //         title: currentValue.title,
+            //         id: currentValue._id,
+            //         cardIds: currentValue.cardIds,
+            //     };
+            //
+            //     return accum;
+            // }, {});
+
+            const newState = {
+                ...state,
+                columns: columns,
+            };
+
+            return newState;
+        }
         default:
             return state;
     }

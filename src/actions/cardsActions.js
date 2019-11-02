@@ -1,4 +1,4 @@
-import {CONSTANTS} from "../actions"
+import {CONSTANTS} from "./types"
 
 export const addCard = (listId, text) => {
     return {
