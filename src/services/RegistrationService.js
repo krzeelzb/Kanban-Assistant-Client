@@ -6,13 +6,13 @@ export const UserRegistration = data => {
 	const salt = bcrypt.genSaltSync(10);
 	const hash = bcrypt.hashSync(password, salt);
 
-	data["password"] = hash;
-
-	return axios.post('http://localhost:4000/registration/register', data)
+	// data["password"] = hash;
+	console.log(data);
+	return axios.post('/users/', {
+		"name":data.name,
+		"email":data.email,
+		"password":data.password
+	})
 		.then(res => res.status)
-}
+};
 
-export const UsernameValidation = data => (
-	axios.post('http://localhost:4000/registration/validateUsername', data)
-		.then(exist => exist.status)
-)

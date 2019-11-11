@@ -40,8 +40,6 @@ class ActionButton extends Component {
         return;
     };
 
-
-    ;
     //TODO: reload after adding a card
     //TODO: refactor to use hooks
     handleAddCard = () => {
@@ -59,8 +57,6 @@ class ActionButton extends Component {
     };
 
     addCard = async (listId, text) => {
-        // return async () => {
-
             await axios
                 .post('/cards/', {
                     "title":text,
@@ -68,17 +64,11 @@ class ActionButton extends Component {
                     "cardId":text
                 })
                 .then((res) => {
-
-                    console.log(res)
-                    console.log(res.data.card)
                 })
                 .catch(err => {
                     console.log(err);
                 });
-        // };
-    }
-
-
+    };
 
     renderAddButton = () => {
         const {list} = this.props;
