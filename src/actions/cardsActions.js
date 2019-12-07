@@ -5,13 +5,11 @@ export const addCard = (listId, text) => {
     return async (dispatch) => {
         await axios
             .post('/cards/', {
-                "title":text,
-                "columnId":listId,
-                "cardId":text
-            },{'headers':{'Authorization':sessionStorage.getItem("jwtToken")}})
+                "title": text,
+                "columnId": listId,
+                "cardId": text
+            }, {'headers': {'Authorization': sessionStorage.getItem("jwtToken")}})
             .then((res) => {
-                console.log(res)
-                console.log(res.data.card)
                 dispatch({type: CONSTANTS.ADD_CARD, payload: res.data.card});
             }).bind(this)
             .catch(err => {

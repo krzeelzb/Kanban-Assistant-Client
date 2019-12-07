@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Card from '@material-ui/core/Card';
 import Button from "@material-ui/core/Button";
 import {connect} from "react-redux";
-import { addColumn, CONSTANTS} from "../actions/types"
+import {addColumn} from "../actions/types"
 import axios from "../axios";
 
 class ActionButton extends Component {
@@ -43,7 +43,7 @@ class ActionButton extends Component {
     //TODO: reload after adding a card
     //TODO: refactor to use hooks
     handleAddCard = () => {
-        const { listId} = this.props;
+        const {listId} = this.props;
         const {text} = this.state;
         console.log((text));
         if (text) {
@@ -57,17 +57,17 @@ class ActionButton extends Component {
     };
 
     addCard = async (listId, text) => {
-            await axios
-                .post('/cards/', {
-                    "title":text,
-                    "columnId":listId,
-                    "cardId":text
-                },{'headers':{'Authorization':sessionStorage.getItem("jwtToken")}})
-                .then((res) => {
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+        await axios
+            .post('/cards/', {
+                "title": text,
+                "columnId": listId,
+                "cardId": text
+            }, {'headers': {'Authorization': sessionStorage.getItem("jwtToken")}})
+            .then((res) => {
+            })
+            .catch(err => {
+                console.log(err);
+            });
     };
 
     renderAddButton = () => {
@@ -134,6 +134,7 @@ class ActionButton extends Component {
             </div>
         )
     };
+
     render() {
         return this.state.formOpen ? this.renderForm() : this.renderAddButton()
     }

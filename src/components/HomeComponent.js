@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Home from './Home'
+
 export default class HomeComponent extends Component {
     constructor() {
         super();
@@ -14,7 +15,7 @@ export default class HomeComponent extends Component {
     render() {
         return (
             <div>
-               <Home/>
+                <Home/>
             </div>
         );
     }

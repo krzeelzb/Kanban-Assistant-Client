@@ -2,8 +2,6 @@ import React, {Component, useFetch} from "react"
 import SingleCard from "./SingleCard"
 import ActionButton from "./ActionButton"
 import {Draggable, Droppable} from "react-beautiful-dnd"
-import {getAllCards} from "../actions/types"
-import {connect} from "react-redux"
 
 class Column extends Component {
     render() {

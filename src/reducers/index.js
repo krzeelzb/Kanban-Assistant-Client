@@ -4,5 +4,5 @@ import cardReducer from "./cardReducer";
 
 export default combineReducers({
     lists: columnReducer,
-    cards:cardReducer
+    cards: cardReducer
 });

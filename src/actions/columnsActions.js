@@ -1,5 +1,6 @@
 import {CONSTANTS} from "./types"
 import axios from '../axios';
+
 export const addColumn = (title) => {
     return {
         type: CONSTANTS.ADD_LIST,
@@ -29,10 +30,10 @@ export const sort = (
 };
 
 export const getAllColumns = () => {
-    return async (dispatch,getState) => {
-        const res = await axios.get(`/columns/all/`,{'headers':{'Authorization':sessionStorage.getItem("jwtToken")}});
+    return async (dispatch, getState) => {
+        const res = await axios.get(`/columns/all/`, {'headers': {'Authorization': sessionStorage.getItem("jwtToken")}});
 
-        const { columns } = res.data;
+        const {columns} = res.data;
         dispatch({
             type: CONSTANTS.SET_COLUMNS,
             payload: {
@@ -43,7 +44,7 @@ export const getAllColumns = () => {
 };
 
 export const getAllCards = columnIds => {
-    return (dispatch,getState) => {
+    return (dispatch, getState) => {
         if (columnIds.length === 0) {
             return dispatch({
                 type: CONSTANTS.SET_CARDS,
@@ -53,11 +54,11 @@ export const getAllCards = columnIds => {
             });
         }
         axios
-            .post('/cards/getAllCards', { columnIds },{'headers':{'Authorization':sessionStorage.getItem("jwtToken")}})
+            .post('/cards/getAllCards', {columnIds}, {'headers': {'Authorization': sessionStorage.getItem("jwtToken")}})
             .then((res) => {
                 // console.log(req)
                 console.log(res.data.cards)
-                dispatch({ type: CONSTANTS.SET_CARDS, payload: res.data.cards });
+                dispatch({type: CONSTANTS.SET_CARDS, payload: res.data.cards});
                 console.log("state2")
                 console.log(getState())
             })
