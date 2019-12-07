@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {COMMON_FIELDS, REGISTRATION_FIELDS} from './MessageBundle';
 import axios from "../axios";
+import { withRouter } from "react-router-dom";
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -62,11 +63,12 @@ export default class Registration extends Component {
                 "password": password
             }).then(res => {
 
-            console.log(res)
+            this.props.history.push("/home");
+
 
         }).catch(err => {
             console.log(err);
-            this.state.setState({
+            this.setState({
                 error:true
             })
         });
@@ -103,7 +105,7 @@ export default class Registration extends Component {
 
         return (
 
-            <Container component="main" maxWidth="xs" >
+            <Container component="main" maxWidth="xs" style={styles.app} >
                 <CssBaseline />
                 <div className={this.classes.paper}>
                     {/*<Avatar className={this.classes.avatar}>*/}
@@ -113,6 +115,7 @@ export default class Registration extends Component {
                         <LockOutlinedIcon />
                         Sign up
                     </Typography>
+                <br/>
                 </div>
 
                 <div className="Registration">
@@ -162,18 +165,19 @@ export default class Registration extends Component {
 
                         <Grid item xs={12}>
                         <Button
-                            type="submit"
+                            type="button"
                             fullWidth
                             variant="contained"
                             color="primary"
                             className={this.classes.submit}
+                            onClick={this.onSubmit}
                         >
                             Sign Up
                         </Button>
 
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link to="/login">
                                 Already have an account? Sign in
                             </Link>
                         </Grid>
@@ -189,3 +193,9 @@ export default class Registration extends Component {
         )
     }
 }
+const styles = {
+    app:{
+        marginTop:"10%"
+
+    }
+};

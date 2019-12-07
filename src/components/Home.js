@@ -46,7 +46,7 @@ function Home () {
         const [loading, setLoading]= useState(true);
         useEffect( ()=>{
             async function fetchData() {
-                const response = await axios.get(`/columns/all/`);
+                const response = await axios.get(`/columns/all/`,{'headers':{'Authorization':sessionStorage.getItem("jwtToken")}});
                 const item = response.data.columns;
                 setColumns(item);
                 setLoading(false);

@@ -1,6 +1,6 @@
 import axios from '../axios'
 import bcrypt from 'bcryptjs';
-
+import { createBrowserHistory } from 'history';
 export const UserRegistration = data => {
 	const password = data.password;
 	const salt = bcrypt.genSaltSync(10);

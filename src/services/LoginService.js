@@ -8,6 +8,7 @@ axios.post('/users/login', data)
         console.log(res.data)
         const { token } = res.data;
         localStorage.setItem("jwtToken", token);
+        sessionStorage.setItem("jwtToken", token);
         // Set token to Auth header
         setAuthToken(token);
         // Decode token to get user data

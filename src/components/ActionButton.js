@@ -62,7 +62,7 @@ class ActionButton extends Component {
                     "title":text,
                     "columnId":listId,
                     "cardId":text
-                })
+                },{'headers':{'Authorization':sessionStorage.getItem("jwtToken")}})
                 .then((res) => {
                 })
                 .catch(err => {

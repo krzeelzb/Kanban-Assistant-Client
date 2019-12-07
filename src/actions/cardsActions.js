@@ -8,7 +8,7 @@ export const addCard = (listId, text) => {
                 "title":text,
                 "columnId":listId,
                 "cardId":text
-            })
+            },{'headers':{'Authorization':sessionStorage.getItem("jwtToken")}})
             .then((res) => {
                 console.log(res)
                 console.log(res.data.card)
