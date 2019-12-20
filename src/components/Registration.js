@@ -61,11 +61,8 @@ export default class Registration extends Component {
 
         this.state = {
             name: '',
-            email: '',
-            password: '',
-            register: false,
-            error: false
-        };
+            email: ''
+        }
     }
 
     render() {
@@ -165,3 +162,4 @@ const styles = {
 
     }
 };
+

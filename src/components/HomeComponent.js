@@ -8,9 +8,7 @@ export default class HomeComponent extends Component {
             message: 'Loading...'
         }
     }
-
-    componentDidMount() {
-    }
+    componentDidMount() { }
 
     render() {
         return (

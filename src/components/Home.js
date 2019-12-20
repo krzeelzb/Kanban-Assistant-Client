@@ -13,7 +13,7 @@ import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
 
 import Styles from "./elements/styles";
 
-import assistantLogo from '../assistantLogo.png'
+import assistantLogo from '../static/assistantLogo.png'
 
 function Home() {
     const classes = useStyles();
@@ -90,7 +90,6 @@ function Home() {
                                                         index={index}
                                                 />
                                             ))}
-                                            {/*<ActionButton list/>*/}
                                         </div>
                                     )}
                                 </Droppable>

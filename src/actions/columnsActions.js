@@ -31,7 +31,7 @@ export const sort = (
 
 export const getAllColumns = () => {
     return async (dispatch, getState) => {
-        const res = await axios.get(`/columns/all/`, {'headers': {'Authorization': sessionStorage.getItem("jwtToken")}});
+        const res = await axios.get(`/columns/`, {'headers': {'Authorization': sessionStorage.getItem("jwtToken")}});
 
         const {columns} = res.data;
         dispatch({
@@ -56,7 +56,6 @@ export const getAllCards = columnIds => {
         axios
             .post('/cards/getAllCards', {columnIds}, {'headers': {'Authorization': sessionStorage.getItem("jwtToken")}})
             .then((res) => {
-                // console.log(req)
                 console.log(res.data.cards)
                 dispatch({type: CONSTANTS.SET_CARDS, payload: res.data.cards});
                 console.log("state2")

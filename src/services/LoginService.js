@@ -6,7 +6,6 @@ const LoginService = data => (
 
     axios.post('/users/login', data)
         .then(res => {
-            console.log(res.data);
             const {token} = res.data;
             localStorage.setItem("jwtToken", token);
             sessionStorage.setItem("jwtToken", token);

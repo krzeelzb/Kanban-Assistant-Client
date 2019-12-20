@@ -27,7 +27,6 @@ class ActionButton extends Component {
             text: e.target.value
         })
     };
-
     handleAddList = () => {
         const {dispatch} = this.props;
         const {text} = this.state;
@@ -40,8 +39,6 @@ class ActionButton extends Component {
         return;
     };
 
-    //TODO: reload after adding a card
-    //TODO: refactor to use hooks
     handleAddCard = () => {
         const {listId} = this.props;
         const {text} = this.state;

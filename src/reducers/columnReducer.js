@@ -9,7 +9,6 @@ const initialState = {
     }]
 };
 
-
 let listID = 5;
 let cardID = 7;
 const columnReducer = (state = initialState, action) => {

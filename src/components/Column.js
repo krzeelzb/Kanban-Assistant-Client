@@ -17,8 +17,6 @@ class Column extends Component {
                                         {
 
                                             this.props.cards.map((card, index) => (
-                                                console.log("singlecdrs"),
-                                                    console.log(card),
                                                     <SingleCard
                                                         id={card}
                                                         index={index}
